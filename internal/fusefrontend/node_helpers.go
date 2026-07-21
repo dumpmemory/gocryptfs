@@ -53,9 +53,9 @@ func (n *Node) readlink(dirfd int, cName string) (out []byte, errno syscall.Errn
 	return []byte(target), 0
 }
 
-// translateSize translates the ciphertext size in `out` into plaintext size.
+// translateSize translates the ciphertext size cSize into plaintext size.
 // Handles regular files & symlinks (and finds out what is what by looking at
-// `out.Mode`).
+// mode).
 func (n *Node) translateSize(dirfd int, cName string, mode uint32, cSize uint64) (pSize uint64) {
 	switch mode & syscall.S_IFMT {
 	case syscall.S_IFREG:
